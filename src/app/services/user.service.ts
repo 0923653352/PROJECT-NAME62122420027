@@ -13,4 +13,8 @@ export class UserService {
   public getUser() : Observable<any>{
     return this.httpClient.get(this.url);
   }
+  public postUser(model:any):Observable<any>{
+    console.log(model);
+    return this.httpClient.post(this.url,model);
+  }
 }
