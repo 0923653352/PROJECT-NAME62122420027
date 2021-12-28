@@ -13,12 +13,39 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     // เรียกใช้งาน api เพื่อ get ข้อมูล
-    this.userService.getUser()
+    this.userService.getUser(this.model)
     .subscribe(result => {
-      this.items = result;
-      console.log(this.items); 
+      console.log(result); 
+      this.ngOnInit();
 
     });
   }
+  deletUser(id: string) : void{
+    this.userid = id;
+  }
+  confirmDelete(): void{
+    $('#deleteExployeeModal').modal('hide');
+    console.log(this.userid);
 
+    this.userService.deleteUser(this.userid)
+    .subscribe(result => {
+      console.log(result); 
+      this.ngOnInit();
+
+    });
+  }
+  editUser(item): void{
+    this.model = item;
+  }
+  updateUser(): void{
+    $('#editEmployeeModel').model('hide');
+    // console.log(this.model);
+    this.userService.putUser(this.model)
+    .subscribe(result => {
+      console.log(result); 
+      this.ngOnInit();
+
+    });
+    
+  }
 }

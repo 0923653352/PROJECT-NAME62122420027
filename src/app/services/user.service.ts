@@ -17,4 +17,13 @@ export class UserService {
     console.log(model);
     return this.httpClient.post(this.url,model);
   }
+  //สร้างเมธอดสำหรับลบข้อมูล
+  public deleteUser(model:string): Observable<any>{
+    return this.httpClient.delete(this.url + '?userid=' + userid);
+  }
+  //สร้างเมธอดดเพื่อเเก้ไขข้อมูล
+  public putUser(model:any): Observable<any>{
+    return this.httpClient.put(this.url,model);
+  }
+  
 }
